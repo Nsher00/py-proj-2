@@ -4,7 +4,7 @@ from pprint import pprint
 
 cupcakes = []
 
-class Cupcake():
+class Cupcake(ABC):
     size = 'regular'
     def __init__(self, name, price, flavor, frosting, filling) -> None:
         self.name = name
@@ -18,7 +18,7 @@ class Cupcake():
         for items in args:
             self.sprinkles.append(items)
     
-    
+    @abstractmethod
     def calc_price(self, quantity):
         return quantity * self.price
 
@@ -41,6 +41,17 @@ class Regular(Cupcake):
         self.frosting = frosting
         self.filling = filling
         self.sprinkles = []
+
+class Vegan(Cupcake):
+    size = 'regular'
+    def __init__(self, name, price, flavor, frosting, filling, is_vegan) -> None:
+        self.name = name
+        self.price = price
+        self.flavor = flavor
+        self.frosting = frosting
+        self.filling = filling
+        self.sprinkles = []
+        self.is_vegan = is_vegan
 
 def make_new_cupcake(file):
     number_of_sprinkles = 0
